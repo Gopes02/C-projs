@@ -1,8 +1,9 @@
 #include <stdio.h>
-
+#include <stdlib.h>
+#include <string.h>
 void bitwiseOperations();
 void sizeDataset();
-
+unsigned int converting (char *input);
 
 int main(){
     int choice;
@@ -28,7 +29,17 @@ int main(){
                 sizeDataset();
                 break;
             case 3: 
-                printf("Converting number repesentations with different base");
+                printf("Converting number repesentations with different base/n");
+                
+                char input[50];
+                printf("Enter a number in Hex/Dec/Bin: ");
+                scanf("%s",input);
+
+                int value = converting(input);
+                printf("Hexadecimal: 0x%X\n", value);
+                //Bin *****add*********
+                printf("Octal: 0%o\n\n", value);
+                
                 break;
             case 4:
                 printf("GoodBye");
@@ -68,7 +79,23 @@ void sizeDataset(){
     printf("Size of double: %lu bytes\n", sizeof(double));
     printf("Size of long double: %lu bytes\n", sizeof(long double));
 }
+unsigned int converting (char *input){
+    int base = 10;
+    char *endptr;
+    unsigned int result;
 
-void converting (){
-    
+    if (input[0] == 'b' || input[0] == 'B') {
+        base = 2;
+        input = input +1;
+    } else if (input[0] == '0' && (input[1] == 'x' || input[1] == 'X')) {
+        base = 16;
+    } else{
+        printf ("\nError: Unknown data type \n\n");
+        return 0;
+    }
+
+    result = strtoul(input, &endptr, base);
+    printf("\nNumber %s converted to unsigned int: %u\n", input, result);
+    return result;
 }
+
