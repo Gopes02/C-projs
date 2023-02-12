@@ -3,8 +3,11 @@
 #include <string.h>
 void bitwiseOperations();
 void sizeDataset();
+void decimalToBinary(int num);
 unsigned int converting (char *input);
-
+/*
+    
+*/
 int main(){
     int choice;
     int flag = 1;
@@ -37,7 +40,7 @@ int main(){
 
                 int value = converting(input);
                 printf("Hexadecimal: 0x%X\n", value);
-                //Bin *****add*********
+                decimalToBinary(value);
                 printf("Octal: 0%o\n\n", value);
                 
                 break;
@@ -80,7 +83,7 @@ void sizeDataset(){
     printf("Size of long double: %lu bytes\n", sizeof(long double));
 }
 unsigned int converting (char *input){
-    int base = 10;
+    int base = 8;
     char *endptr;
     unsigned int result;
 
@@ -89,6 +92,8 @@ unsigned int converting (char *input){
         input = input +1;
     } else if (input[0] == '0' && (input[1] == 'x' || input[1] == 'X')) {
         base = 16;
+    }else if (input[0] >= '0' && input[0] <= '9'){
+         base = 10;
     } else{
         printf ("\nError: Unknown data type \n\n");
         return 0;
@@ -99,3 +104,26 @@ unsigned int converting (char *input){
     return result;
 }
 
+void decimalToBinary(int num) {   
+    if (num == 0) {
+        printf("0");
+        return;
+    }
+   
+   // Stores binary representation of number.
+   int binaryNum[32]; // Assuming 32 bit integer.
+   int i=0;
+   
+   for ( ;num > 0; ){
+      binaryNum[i++] = num % 2;
+      num /= 2;
+   }
+   
+   // Printing array in reverse order.
+   printf("Binary: b");
+   for (int j = i-1; j >= 0; j--){
+      
+      printf("%d", binaryNum[j]);
+   }
+   printf("\n");
+}
