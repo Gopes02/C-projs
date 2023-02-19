@@ -32,6 +32,21 @@ int main(){
 }
 
 void displayFunction(){
+    signed char sc = -7;
+    unsigned char usc = sc;
+    short sx = sc;
+    unsigned short usx = sc;
+    unsigned short usy = sx;
+    int ty = sc;
+    unsigned int uty = ty;
 
+
+    printf("the decimal format is %d and the Hex format is %X of sc\n",sc,sc);
+    printf("the decimal format is %d and the Hex format is %X of usc\n",usc,usc);
+    printf("the decimal format is %d and the Hex format is %X of sx\n",sx,sx);
+    printf("the decimal format is %d and the Hex format is %X of usx\n",usx,usx);
+    printf("the decimal format is %d and the Hex format is %X of usy\n",usy,usy);
+    printf("the decimal format is %d and the Hex format is %X of ty\n",ty,ty);
+    printf("the decimal format is %u and the Hex format is %X of uty\n",uty,uty);
     
 }
