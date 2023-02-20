@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void displayFunction();
-
+void bitFunction();
 int main(){
     int choice, flag = 1;
 
@@ -18,8 +18,8 @@ int main(){
                 displayFunction();
                 break;
             case 2: 
-                printf("Part 2");
-
+                printf("Part 2\n");
+                bitFunction();
                 break;
             case 3: 
                 flag = 2;
@@ -50,3 +50,19 @@ void displayFunction(){
     printf("the decimal format is %u and the Hex format is %X of uty\n",uty,uty);
     
 }
+
+void bitFunction(){
+    int A, B, C, D, E;
+    printf("Please enter the value of A: ");
+    scanf("%d",&A);
+    printf("Please enter the value of B: ");
+    scanf("%d",&B);
+    
+    C = A|B;
+    D = A^B;
+    E = A&B;
+
+    printf("%d,%d,%d",C,D,E);
+
+}
+
