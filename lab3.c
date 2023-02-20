@@ -3,6 +3,7 @@
 
 void displayFunction();
 void bitFunction();
+char* decToBin(int num);
 int main(){
     int choice, flag = 1;
 
@@ -53,52 +54,40 @@ void displayFunction(){
 }
 
 void bitFunction(){
-    /*long int A, B, C, D, E;
-    char bin [33];
+    long int A, B, C, D, E;
+    
     printf("Please enter the value of A: ");
     scanf("%ld",&A);
     printf("Please enter the value of B: ");
     scanf("%ld",&B);
     
-    C = A|B;
-    D = A^B;
-    E = A&B;
-    printf("%ld\n",C);
-    printf("%ld\n",D);
-    printf("%ld\n",E);
-
-    sprintf(bin,"%ld",C);
-    printf("\nThe Bitwise OR of A: %ld and B: %ld is %s\n",A,B,bin);
-    
-    sprintf(bin,"%ld",D);
-    printf("The Bitwise Xor of A: %ld and B: %ld is %s\n",A,B,bin);
-    
-    sprintf(bin,"%ld",E);
-    printf("The Bitwise AND of A: %ld and B: %ld is %s\n\n\n",A,B,bin);
-*/
-long int A, B, C, D, E;
-    char bin [33];
-    printf("Please enter the value of A: ");
-    scanf("%ld",&A);
-    printf("Please enter the value of B: ");
-    scanf("%ld",&B);
-    
-    C = A|B;
-    D = A^B;
-    E = A&B;
-    printf("%ld\n",C);
-    printf("%ld\n",D);
-    printf("%ld\n",E);
-
-    sprintf(bin,"%ld",C);
-    printf("\nThe Bitwise OR of A: %ld and B: %ld is %s\n",A,B,bin);
-    
-    sprintf(bin,"%ld",D);
-    printf("The Bitwise Xor of A: %ld and B: %ld is %s\n",A,B,bin);
-    
-    sprintf(bin,"%ld",E);
-    printf("The Bitwise AND of A: %ld and B: %ld is %s\n",A,B,bin);
+    C = A|B; //OR
+    D = A^B; //Xor
+    E = A&B; //And 
+   //needed to use function decToBin to convert to Bin
+    printf("\nThe Bitwise OR of  A: %ld and B: %ld is %s in Binary\n",A,B,decToBin(C));
+    printf("The Bitwise Xor of A: %ld and B: %ld is %s in Binary\n",A,B,decToBin(D));
+    printf("The Bitwise AND of A: %ld and B: %ld is %s in Binary\n\n\n",A,B,decToBin(E));
 }
 
 
+char* decToBin(int num){
+    static char bin[33]; // 32 bits + 1 null terminator, static so it isnt re-initialized
+    int i = 0;
+    while(num > 0){
+        bin[i++] = (num & 1) + '0'; //results in either 0 or 1, then converts to ASCII character 
+        num >>= 1;
+    }
+    bin[i] = '\0';
+    // reverse the binary string to correct order
+    int j = 0, k = i - 1;
+    while(j < k){
+        char temp = bin[j];
+        bin[j] = bin[k];
+        bin[k] = temp;
+        j++;
+        k--;
+    }
+    return bin;
+}
 
