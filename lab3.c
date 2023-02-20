@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void displayFunction();
 void bitFunction();
@@ -6,7 +7,7 @@ int main(){
     int choice, flag = 1;
 
 
-    while (flag){
+    while (flag != 2){
         printf("Press 1: to display in hex and Dec Format: \n");
         printf("press 2: part 2: \n");
         printf("Press 3: To quit\n\n");
@@ -52,17 +53,52 @@ void displayFunction(){
 }
 
 void bitFunction(){
-    int A, B, C, D, E;
+    /*long int A, B, C, D, E;
+    char bin [33];
     printf("Please enter the value of A: ");
-    scanf("%d",&A);
+    scanf("%ld",&A);
     printf("Please enter the value of B: ");
-    scanf("%d",&B);
+    scanf("%ld",&B);
     
     C = A|B;
     D = A^B;
     E = A&B;
+    printf("%ld\n",C);
+    printf("%ld\n",D);
+    printf("%ld\n",E);
 
-    printf("%d,%d,%d",C,D,E);
+    sprintf(bin,"%ld",C);
+    printf("\nThe Bitwise OR of A: %ld and B: %ld is %s\n",A,B,bin);
+    
+    sprintf(bin,"%ld",D);
+    printf("The Bitwise Xor of A: %ld and B: %ld is %s\n",A,B,bin);
+    
+    sprintf(bin,"%ld",E);
+    printf("The Bitwise AND of A: %ld and B: %ld is %s\n\n\n",A,B,bin);
+*/
+long int A, B, C, D, E;
+    char bin [33];
+    printf("Please enter the value of A: ");
+    scanf("%ld",&A);
+    printf("Please enter the value of B: ");
+    scanf("%ld",&B);
+    
+    C = A|B;
+    D = A^B;
+    E = A&B;
+    printf("%ld\n",C);
+    printf("%ld\n",D);
+    printf("%ld\n",E);
 
+    sprintf(bin,"%ld",C);
+    printf("\nThe Bitwise OR of A: %ld and B: %ld is %s\n",A,B,bin);
+    
+    sprintf(bin,"%ld",D);
+    printf("The Bitwise Xor of A: %ld and B: %ld is %s\n",A,B,bin);
+    
+    sprintf(bin,"%ld",E);
+    printf("The Bitwise AND of A: %ld and B: %ld is %s\n",A,B,bin);
 }
+
+
 
