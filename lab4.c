@@ -3,6 +3,7 @@
 void string_input(char* str);
 void string_lenght(char* str, int* len);
 int lower_case_test(char c);
+char lower_to_upper(char c);
 #define MAX_LENGHT 100
 
 int main(){
@@ -31,7 +32,9 @@ void string_lenght(char* str, int* strLen){
 }
 
 int lower_case_test(char c){
-    
-        return (c >= 'a' && c<= 'z');
-        
+    return (c >= 'a' && c<= 'z');
+}
+
+char lower_to_upper(char c){
+    return c = c - 'a' + 'A';
 }
