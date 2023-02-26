@@ -7,7 +7,7 @@ char lower_to_upper(char c);
 void capitalize_alpha_chars(char* str, int* strLen,int* count);
 void reverse_string(char* str, int* strLen, char* newStr );
 void print(char* newStr, int* strLen, int* count);
-void SortAndFind(int *Arr, int X);
+int SortAndFind(int *Arr, int X);
 
 #define MAX_LENGTH 100
 
@@ -22,24 +22,28 @@ int main() {
     print( newStr, &strLen, &count);
 
     printf("\n-------------------------------------------------------------------------\n");
-    int Arr[]={0};
+    int Arr[MAX_LENGTH] = {0};
     int i = 0, X = 0;
     
-    while (i < MAX_LENGTH){
+    while (i < MAX_LENGTH) {
         printf("Enter an element of the array (to end the array enter '-1'): ");  
-        scanf("%d",&Arr[i]);
+        scanf("%d", &Arr[i]);
         
-        if(Arr[i] == -1){
+        if (Arr[i] == -1) {
             break;
         } 
         i++;
     }
 
-
     printf("Please enter the int you are looking for in the array: ");
-    scanf("%d",&X);
+    scanf("%d", &X);
     
-    SortAndFind(Arr, X);
+    int index = SortAndFind(Arr, X);
+    if (index == -1) {
+        printf("%d was not found in the array\n", X);
+    } else {
+        printf("%d was found at index %d in the sorted array\n", X, index);
+    }
     return 0;
 }
 
@@ -91,10 +95,43 @@ void print(char* newStr, int* strLen, int* count) {
 }
 
 
-void SortAndFind(int *Arr, int X) {
+int SortAndFind(int *Arr, int X) {
     int len = 0;
     while (Arr[len] != -1) {
         len++;
     }
-    printf("%d",len);
+
+    // Bubble Sort algorithm
+    for (int i = 0; i < len-1; i++) {
+        for (int j = 0; j < len-i-1; j++) {
+            if (Arr[j] > Arr[j+1]) {
+                int temp = Arr[j];
+                Arr[j] = Arr[j+1];
+                Arr[j+1] = temp;
+            }
+        }
+    }
+    
+ 
+    printf("Sorted Array: ");
+    for (int i = 0; i < len; i++) {
+        printf("%d ", Arr[i]);
+    }
+    printf("\n");
+
+
+    int left = 0;
+    int right = len - 1;
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (Arr[mid] == X) {
+            return mid;
+        } else if (Arr[mid] < X) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    
+    return -1;
 }
