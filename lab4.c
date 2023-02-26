@@ -7,6 +7,7 @@ char lower_to_upper(char c);
 void capitalize_alpha_chars(char* str, int* strLen,int* count);
 void reverse_string(char* str, int* strLen, char* newStr );
 void print(char* newStr, int* strLen, int* count);
+void SortAndFind(int *Arr, int X);
 
 #define MAX_LENGTH 100
 
@@ -20,6 +21,25 @@ int main() {
     reverse_string(str, &strLen, newStr);
     print( newStr, &strLen, &count);
 
+    printf("\n-------------------------------------------------------------------------\n");
+    int Arr[]={0};
+    int i = 0, X = 0;
+    
+    while (i < MAX_LENGTH){
+        printf("Enter an element of the array (to end the array enter '-1'): ");  
+        scanf("%d",&Arr[i]);
+        
+        if(Arr[i] == -1){
+            break;
+        } 
+        i++;
+    }
+
+
+    printf("Please enter the int you are looking for in the array: ");
+    scanf("%d",&X);
+    
+    SortAndFind(Arr, X);
     return 0;
 }
 
@@ -68,4 +88,13 @@ void print(char* newStr, int* strLen, int* count) {
     }
      printf("The string is %d chars and %d chars were capitalized. ", *strLen, *count);
 
+}
+
+
+void SortAndFind(int *Arr, int X) {
+    int len = 0;
+    while (Arr[len] != -1) {
+        len++;
+    }
+    printf("%d",len);
 }
