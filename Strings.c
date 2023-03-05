@@ -5,6 +5,7 @@
 int charCountsEqual(char str[], char substr[]);
 int isSubstring(char str[], char substr[]);
 void splitString(char str[], char words[][100], int *numWords);
+void sortStrings(char words[][100], int numWords);
 
 int main() {
     char string[100];
@@ -32,6 +33,8 @@ int main() {
     }
 
     splitString(string, words, &numWords);
+
+    sortStrings(words, numWords);
 
     printf("The string split into words:\n");
     for (int i = 0; i < numWords; i++) {
@@ -92,5 +95,20 @@ void splitString(char str[], char words[][100], int *numWords) {
         strcpy(words[*numWords], word);
         (*numWords)++;
         word = strtok(NULL, " ");
+    }
+}
+
+void sortStrings(char words[][100], int numWords) {
+    int i, j;
+    char temp[100];
+
+    for (i = 0; i < numWords - 1; i++) {
+        for (j = i + 1; j < numWords; j++) {
+            if (strcmp(words[i], words[j]) > 0) {
+                strcpy(temp, words[i]);
+                strcpy(words[i], words[j]);
+                strcpy(words[j], temp);
+            }
+        }
     }
 }
