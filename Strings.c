@@ -4,10 +4,13 @@
 
 int charCountsEqual(char str[], char substr[]);
 int isSubstring(char str[], char substr[]);
+void splitString(char str[], char words[][100], int *numWords);
 
 int main() {
     char string[100];
     char substring[100];
+    char words[20][100];
+    int numWords;
 
     printf("Enter a string: ");
     scanf("%[^\n]", string);
@@ -28,9 +31,15 @@ int main() {
         printf("The strings do not have the same number of character counts.\n");
     }
 
+    splitString(string, words, &numWords);
+
+    printf("The string split into words:\n");
+    for (int i = 0; i < numWords; i++) {
+        printf("%s\n", words[i]);
+    }
+
     return 0;
 }
-
 
 int isSubstring(char str[], char substr[]) {
     int strLen = strlen(str);
@@ -50,10 +59,6 @@ int isSubstring(char str[], char substr[]) {
 
     return 0;
 }
-
-
-
-
 
 int charCountsEqual(char str[], char substr[]) {
     int counts1[26] = {0}, counts2[26] = {0};
@@ -77,4 +82,15 @@ int charCountsEqual(char str[], char substr[]) {
     }
 
     return 1;
+}
+
+void splitString(char str[], char words[][100], int *numWords) {
+    *numWords = 0;
+    char *word = strtok(str, " ");
+
+    while (word != NULL && *numWords < 20) {
+        strcpy(words[*numWords], word);
+        (*numWords)++;
+        word = strtok(NULL, " ");
+    }
 }
